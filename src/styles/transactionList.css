@@ -1,0 +1,11 @@
+.no-tx { padding:12px; color:#6b7280 }
+.tx-list { margin-top:12px; display:flex; flex-direction:column; gap:8px }
+.tx-item { display:flex; justify-content:space-between; gap:12px; padding:8px; border-radius:8px; align-items:center }
+.tx-left { display:flex; gap:12px; align-items:center }
+.tx-chip { width:8px; height:40px; border-radius:4px }
+.tx-chip.expense { background:#fecaca }
+.tx-chip.cash { background:#bbf7d0 }
+.tx-title { font-weight:600 }
+.tx-date { font-size:12px; color:#6b7280 }
+.tx-right { display:flex; gap:12px; align-items:center }
+.tx-amount { font-weight:700 }

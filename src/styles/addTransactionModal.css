@@ -1,0 +1,16 @@
+.modal-backdrop { position: fixed; inset: 0; background: rgba(15,23,42,0.4); display:flex; align-items:center; justify-content:center; z-index:60; }
+.modal { width: 420px; max-width:94%; background:white; border-radius:12px; padding:16px; box-shadow: 0 12px 40px rgba(2,6,23,0.2); }
+.modal-header { display:flex; justify-content:space-between; align-items:center; gap:12px }
+.modal-title { margin:0; font-size:18px }
+.modal-sub { color:#6b7280; font-size:13px }
+.segmented { display:flex; gap:8px; margin-top:12px }
+.segmented button { flex:1; padding:8px 10px; border-radius:8px; border:1px solid transparent; cursor:pointer }
+.segmented .active { color:white; background:linear-gradient(90deg,#ef4444,#dc2626); }
+.segmented .active.cash { background:linear-gradient(90deg,#059669,#10b981); }
+.form-row { margin-top:12px; display:flex; flex-direction:column; gap:6px }
+.form-row label { font-size:13px; color:#374151 }
+.form-row input[type="text"], .form-row input[type="date"], .form-row select { padding:10px 12px; border-radius:8px; border:1px solid #e6e8eb; outline:none }
+.form-row input:focus, .form-row select:focus { box-shadow:0 2px 8px rgba(79,70,229,0.08); border-color:#c7d2fe }
+.note-input { padding:8px 10px }
+.modal-actions { display:flex; justify-content:flex-end; gap:8px; margin-top:16px }
+.modal-close { display:flex; gap:8px }

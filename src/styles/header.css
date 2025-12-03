@@ -1,0 +1,23 @@
+.brand { display:flex; gap:12px; align-items:center }
+.brand-img { height:64px; width:auto; border-radius:0; object-fit:contain; display:inline-block }
+.brand { display:flex; align-items:center; }
+.brand-sub { font-size:12px; color:#6b7280 }
+.header-actions { display:flex; align-items:center; gap:12px }
+.month-block { display:flex; align-items:center; gap:12px }
+.month-info { text-align:right }
+.dropdown-wrap { position:relative }
+.dropdown-header { display:flex; justify-content:space-between; align-items:center; padding:6px 4px }
+.dropdown-year { font-weight:700 }
+.month-list { margin-top:8px }
+.month-item { padding:8px 10px; border-radius:8px; cursor:pointer; display:flex; justify-content:space-between; align-items:center }
+.month-item:hover { background:#f8fafc }
+.month-item.active { background: linear-gradient(90deg,#eef2ff,#ecfeff); font-weight:600 }
+.month-dropdown { position:absolute; right:12px; top:56px; width:240px; z-index:80; border-radius:10px; overflow:hidden }
+.dropdown-year { font-weight:700 }
+.year-grid { margin-top:8px }
+.year-row { display:flex; gap:8px; margin-bottom:6px }
+.year-item { padding:6px 10px; border-radius:8px; cursor:pointer; font-size:13px; color:#374151; border:1px solid transparent }
+.year-item:hover { background:#f8fafc }
+.year-item.active { background:#eef2ff; border-color:#c7d2fe; font-weight:700 }
+.year-heading { font-size:13px; color:#6b7280; margin-bottom:6px }
+.dropdown-header .small { font-size:12px; color:#6b7280 }
