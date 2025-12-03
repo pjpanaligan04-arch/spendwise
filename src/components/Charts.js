@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
+import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, LabelList } from 'recharts';
 import '../styles/shared.css';
 import '../styles/charts.css';
+import { formatPeso } from '../utils/format';
 
 const COLORS = ['#06b6d4','#4f46e5','#ef4444','#f59e0b','#10b981','#8b5cf6','#f97316'];
 
@@ -26,9 +27,12 @@ export default function Charts({ transactions }) {
       <div className="card chart-large">
         <h4 className="card-subtitle">Expenses by Category</h4>
         <div className="chart-sm">
-          <ResponsiveContainer>
+          <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              <Pie data={data} dataKey="value" nameKey="name" outerRadius={60} label>
+              <Pie data={data} dataKey="value" nameKey="name" outerRadius={60} label={(props)=>{
+                  const { name, value } = props;
+                  return `${name} ${formatPeso(value)}`;
+                }}>
                 {data.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
@@ -41,12 +45,14 @@ export default function Charts({ transactions }) {
       <div className="card chart-side">
         <h4 className="card-subtitle">Daily expenses</h4>
         <div className="chart-md">
-          <ResponsiveContainer>
+          <ResponsiveContainer width="100%" height="100%">
             <BarChart data={byDay}>
               <XAxis dataKey="day" />
               <YAxis />
-              <Tooltip />
-              <Bar dataKey="amt" fill="#ef4444" />
+              <Tooltip formatter={(value)=>formatPeso(value)} />
+              <Bar dataKey="amt" fill="#ef4444">
+                <LabelList dataKey="amt" position="top" formatter={(val)=>formatPeso(val)} />
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         </div>

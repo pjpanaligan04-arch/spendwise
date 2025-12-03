@@ -9,3 +9,7 @@
 .tx-date { font-size:12px; color:#6b7280 }
 .tx-right { display:flex; gap:12px; align-items:center }
 .tx-amount { font-weight:700 }
+
+.tx-delete-btn { background: transparent; border: none; padding:6px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; cursor:pointer }
+.tx-delete-btn svg { display:block }
+.tx-delete-btn:focus { outline: 2px solid rgba(239,68,68,0.18); }

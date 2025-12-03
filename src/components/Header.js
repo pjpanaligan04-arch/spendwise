@@ -45,51 +45,46 @@ export default function Header({ monthDate, setMonthDate, activeTab, setActiveTa
         <img src="/logo.png" alt="Spendwise logo" className="brand-img" />
       </div>
 
+      <div className="header-center">
+        <button className="month-toggle" onClick={()=>setOpenMenu(s=>!s)} aria-expanded={openMenu} aria-controls="month-dropdown">
+          <div className="month-label">{formatMonth(monthDate)}</div>
+        </button>
+
+        {openMenu && (
+          <div id="month-dropdown" className="month-dropdown">
+            <div className="card">
+              <div className="dropdown-header">
+                <div className="dropdown-year">{year}</div>
+                <div className="muted small">Select month / year</div>
+              </div>
+              <div className="month-list">
+                {monthItems.map(mi => (
+                  <div key={mi.index} className={`month-item ${mi.index === monthDate.getMonth() ? 'active':''}`} onClick={()=>pickMonth(mi.index)}>
+                    <div>{mi.name}</div>
+                    <div className="muted small">{mi.index === monthDate.getMonth() ? 'Selected':''}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="year-grid">
+                <div className="year-heading muted">Years</div>
+                {yearItems.map((row, rIdx) => (
+                  <div key={rIdx} className="year-row">
+                    {row.map(y => (
+                      <div key={y} className={`year-item ${y === monthDate.getFullYear() ? 'active' : ''}`} onClick={()=>pickYear(y)}>{y}</div>
+                    ))}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+
       <div className="header-actions">
         <div className="tabs">
           <div className={`tab ${activeTab === 'overview' ? 'active':''}`} onClick={()=>setActiveTab('overview')}>Overview</div>
           <div className={`tab ${activeTab === 'history' ? 'active':''}`} onClick={()=>setActiveTab('history')}>History</div>
-        </div>
-
-        <div className="month-block">
-          <div className="month-info">
-            <div className="month-label">{formatMonth(monthDate)}</div>
-          </div>
-
-          <div className="dropdown-wrap">
-            <div className="hamburger" onClick={()=>setOpenMenu((s)=>!s)} title="Open month selector">
-              <div></div><div></div><div></div>
-            </div>
-            {openMenu && (
-              <div className="month-dropdown">
-                <div className="card">
-                  <div className="dropdown-header">
-                    <div className="dropdown-year">{year}</div>
-                    <div className="muted small">Select month / year</div>
-                  </div>
-                  <div className="month-list">
-                    {monthItems.map(mi => (
-                      <div key={mi.index} className={`month-item ${mi.index === monthDate.getMonth() ? 'active':''}`} onClick={()=>pickMonth(mi.index)}>
-                        <div>{mi.name}</div>
-                        <div className="muted small">{mi.index === monthDate.getMonth() ? 'Selected':''}</div>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="year-grid">
-                    <div className="year-heading muted">Years</div>
-                    {yearItems.map((row, rIdx) => (
-                      <div key={rIdx} className="year-row">
-                        {row.map(y => (
-                          <div key={y} className={`year-item ${y === monthDate.getFullYear() ? 'active' : ''}`} onClick={()=>pickYear(y)}>{y}</div>
-                        ))}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
         </div>
       </div>
     </header>

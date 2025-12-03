@@ -3,6 +3,7 @@ import '../styles/shared.css';
 import '../styles/overview.css';
 import Charts from './Charts';
 import TransactionList from './TransactionList';
+import { formatPeso } from '../utils/format';
 
 function startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
 function endOfMonth(d) { return new Date(d.getFullYear(), d.getMonth()+1, 0, 23,59,59); }
@@ -34,15 +35,15 @@ export default function Overview({ transactions, monthDate, onOpenAdd }) {
           <div className="summary mt-12">
             <div className="item">
               <div className="muted small">Cash</div>
-              <div className="amount">${totals.cash.toFixed(2)}</div>
+              <div className="amount">{formatPeso(totals.cash)}</div>
             </div>
             <div className="item">
               <div className="muted small">Expenses</div>
-              <div className="amount">${totals.expenses.toFixed(2)}</div>
+              <div className="amount">{formatPeso(totals.expenses)}</div>
             </div>
             <div className="item">
               <div className="muted small">Balance</div>
-              <div className="amount">${totals.balance.toFixed(2)}</div>
+              <div className="amount">{formatPeso(totals.balance)}</div>
             </div>
           </div>
 
@@ -65,7 +66,7 @@ export default function Overview({ transactions, monthDate, onOpenAdd }) {
             {Array.from(new Set(transactions.filter(t=>t.type==='expense').map(t=>t.category))).slice(0,6).map((c)=> (
               <div key={c} className="category-row">
                 <div>{c}</div>
-                <div className="muted small">$0.00</div>
+                <div className="muted small">{formatPeso(0)}</div>
               </div>
             ))}
           </div>

@@ -1,0 +1,141 @@
+/* Responsive overrides for small screens (mobile-first additions) */
+:root{
+  --gap-sm: 8px;
+  --gap-md: 12px;
+}
+
+/* Make base containers fluid */
+body, #root, .app { min-width: 0; }
+
+/* Reduce global paddings on small screens */
+.card { padding: 12px; }
+
+/* Header adjustments */
+.brand-img { height:48px; }
+.brand-sub { display:none; }
+.header-actions { gap:8px; }
+
+/* Summary: stack items vertically on narrow screens */
+.summary { flex-direction:column; gap: var(--gap-sm); align-items:stretch }
+.summary .item { text-align:left }
+
+/* Transaction list: make items wrap and take full width */
+.tx-list { gap:8px }
+.tx-item { flex-direction:row; align-items:center; padding:10px; }
+.tx-left { flex:1; min-width:0 }
+.tx-title { white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.tx-amount { white-space:nowrap }
+
+/* Modal: full-width on small screens */
+.modal { width: calc(100% - 32px); max-width: 640px; margin: 0 16px; }
+.modal-backdrop { align-items:flex-end; padding-bottom:20px }
+
+/* FAB: reduce size and bring slightly above keyboard safe area */
+.fab { width:52px; height:52px; right:14px; bottom:14px; font-size:24px }
+
+/* Buttons and form controls become full width where helpful */
+.form-row input[type="text"], .form-row input[type="date"], .form-row select, .segmented button { width:100%; box-sizing:border-box }
+.modal-actions { flex-direction:column-reverse; gap:8px }
+.modal-actions .btn-primary, .modal-actions .btn-ghost { width:100% }
+
+/* Charts and images scale responsively */
+.chart, .chart svg, .chart canvas, img { max-width:100%; height:auto }
+
+/* Small typography tweaks */
+.amount { font-size:18px }
+.card-title { font-size:16px }
+
+/* Tweak dropdowns and absolute panels to fit mobile */
+.month-dropdown { right:8px; left:8px; position:fixed; top:64px; width:auto }
+
+@media (min-width: 480px) {
+  /* restore some spacing on larger phones / small tablets */
+  .brand-img { height:56px }
+  .modal-backdrop { align-items:center }
+  .modal { width:420px }
+  .modal-actions { flex-direction:row }
+}
+
+/* Mobile: rearrange header elements for narrow screens */
+@media (max-width: 480px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 12px;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .brand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .brand-img { height:44px; margin:0 auto; }
+
+  .header-actions { display:flex; flex-direction:column; gap:10px; width:100%; }
+
+  /* Tabs become a compact segmented control that fills width */
+  .tabs { display:flex; gap:8px; width:100%; }
+  .tab { flex:1; text-align:center; padding:8px 10px; font-size:14px; border-radius:8px }
+
+  /* Month block sits below tabs and stretches full width */
+  .month-block { display:flex; justify-content:space-between; align-items:center; gap:8px; width:100% }
+  .month-info { text-align:left; flex:1; min-width:0 }
+
+  /* Make the hamburger easier to tap */
+  .hamburger { width:44px; height:44px; padding:6px; box-sizing:border-box }
+
+  /* Month dropdown becomes a bottom sheet for mobile */
+  .month-dropdown {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    z-index: 110;
+    max-height: 62vh;
+    overflow: auto;
+    background: transparent;
+    padding: 8px 0;
+  }
+
+  .month-dropdown .card { margin: 0 12px; border-radius: 12px; padding: 12px }
+
+  .month-dropdown .dropdown-header { padding: 8px 4px }
+
+  .month-dropdown .month-list { display:grid; grid-template-columns:1fr; gap:8px; margin-top:8px }
+
+  .year-grid { margin-top:10px }
+  .year-row { display:flex; gap:8px; flex-wrap:wrap }
+  .year-item { flex: 1 0 auto; min-width:64px }
+
+  /* Improve touch targets globally */
+  .tab, .month-item, .year-item, .hamburger { -webkit-tap-highlight-color: rgba(0,0,0,0); }
+}
+
+/* Additional mobile fixes: prevent horizontal scroll and stack charts */
+@media (max-width: 480px) {
+  /* Prevent any accidental horizontal scrolling on small screens */
+  html, body, #root { overflow-x: hidden; }
+
+  /* Ensure wrapper doesn't force width > 100% */
+  .app-main, .overview-grid, .charts-row { box-sizing: border-box; max-width: 100%; }
+
+  /* Fix hamburger visual lines */
+  .hamburger { display:flex; align-items:center; justify-content:center }
+  .hamburger div { width: 20px; height: 3px; background: #111827; border-radius:2px }
+  .hamburger div + div { margin-top:4px }
+
+  /* Stack charts vertically: pie (large) first, bar below */
+  .charts-row { flex-direction: column; align-items: stretch; gap:12px }
+  .chart-large { width:100%; height:240px }
+  .chart-side { width:100%; height:220px }
+  .chart-sm { height:180px }
+  .chart-md { height:180px }
+}
