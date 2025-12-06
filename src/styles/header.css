@@ -6,8 +6,10 @@
 .month-block { display:flex; align-items:center; gap:12px }
 .month-info { text-align:right }
 .dropdown-wrap { position:relative }
-.dropdown-header { display:flex; justify-content:space-between; align-items:center; padding:6px 4px }
-.dropdown-year { font-weight:700 }
+.dropdown-header { display:flex; justify-content:center; align-items:center; gap:8px; padding:6px 4px }
+.dropdown-year { font-weight:700; font-size:18px }
+.year-arrow { background:#eff6ff; border:1px solid #3b82f6; font-size:18px; cursor:pointer; padding:4px; border-radius:6px; color:#1e40af; outline: none !important; }
+.year-arrow:hover { background:#dbeafe; border-color:#2563eb }
 .month-list { margin-top:8px }
 .month-item { padding:8px 10px; border-radius:8px; cursor:pointer; display:flex; justify-content:space-between; align-items:center }
 .month-item:hover { background:#f8fafc }
@@ -21,3 +23,6 @@
 .year-item.active { background:#eef2ff; border-color:#c7d2fe; font-weight:700 }
 .year-heading { font-size:13px; color:#6b7280; margin-bottom:6px }
 .dropdown-header .small { font-size:12px; color:#6b7280 }
+
+.month-toggle { background:#eff6ff; border:1px solid #3b82f6; cursor:pointer; padding:8px 12px; border-radius:8px; color:#1e40af; outline: none !important; font-size:16px; font-weight:600; }
+.month-toggle:hover { background:#dbeafe; border-color:#2563eb }

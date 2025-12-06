@@ -31,7 +31,7 @@ body, #root, .app { min-width: 0; }
 .modal-backdrop { align-items:flex-end; padding-bottom:20px }
 
 /* FAB: reduce size and bring slightly above keyboard safe area */
-.fab { width:52px; height:52px; right:14px; bottom:14px; font-size:24px }
+.fab { width:52px; height:52px; right:14px; bottom:14px; font-size:24px; z-index: 10; }
 
 /* Buttons and form controls become full width where helpful */
 .form-row input[type="text"], .form-row input[type="date"], .form-row select, .segmented button { width:100%; box-sizing:border-box }

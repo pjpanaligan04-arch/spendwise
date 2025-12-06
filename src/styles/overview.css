@@ -1,8 +1,11 @@
 .card-header { display:flex; justify-content:space-between; align-items:center }
 .card-title { margin:0 }
-.summary { display:flex; gap:12px; justify-content:space-between }
+.summary-container { padding:12px; border-radius:8px; background: #f0f8ff; }
+.balance-item { text-align:center; margin-bottom:12px; }
+.cash-expenses { display:flex; gap:12px; justify-content:space-between; }
 .item { flex:1; padding:12px; border-radius:8px; background: linear-gradient(180deg,#f8fafc,#ffffff); text-align:center }
 .amount { font-weight:700; font-size:20px }
+.amount.large { font-size:28px; }
 .mt-10 { margin-top:10px }
 .mt-12 { margin-top:12px }
 .mt-14 { margin-top:14px }

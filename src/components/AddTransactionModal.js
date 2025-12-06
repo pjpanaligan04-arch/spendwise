@@ -56,7 +56,6 @@ export default function AddTransactionModal({ onClose, onSave }){
             value={amount}
             onChange={(e)=>setAmount(e.target.value)}
             placeholder="0.00"
-            style={ type === 'expense' ? { borderColor: colorForCategory(category) } : { borderColor: '#10b981' } }
           />
         </div>
 
@@ -66,7 +65,6 @@ export default function AddTransactionModal({ onClose, onSave }){
             <select
               value={category}
               onChange={(e)=>setCategory(e.target.value)}
-              style={{ borderColor: colorForCategory(category) }}
             >
               {CATEGORIES.map(c=> <option key={c} value={c}>{c}</option>)}
             </select>
@@ -85,7 +83,6 @@ export default function AddTransactionModal({ onClose, onSave }){
             value={note}
             onChange={(e)=>setNote(e.target.value)}
             placeholder="e.g. Grocery shopping"
-            style={ type === 'expense' ? { borderColor: colorForCategory(category) } : { borderColor: '#10b981' } }
           />
         </div>
 

@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import '../styles/shared.css';
 import '../styles/overview.css';
 import Charts from './Charts';
-import TransactionList from './TransactionList';
 import { formatPeso } from '../utils/format';
 
 function startOfMonth(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
@@ -32,27 +31,25 @@ export default function Overview({ transactions, monthDate, onOpenAdd }) {
             <h3 className="card-title">This Month</h3>
           </div>
 
-          <div className="summary mt-12">
-            <div className="item">
-              <div className="muted small">Cash</div>
-              <div className="amount">{formatPeso(totals.cash)}</div>
-            </div>
-            <div className="item">
-              <div className="muted small">Expenses</div>
-              <div className="amount">{formatPeso(totals.expenses)}</div>
-            </div>
-            <div className="item">
+          <div className="summary-container mt-12">
+            <div className="balance-item">
               <div className="muted small">Balance</div>
-              <div className="amount">{formatPeso(totals.balance)}</div>
+              <div className="amount large">{formatPeso(totals.balance)}</div>
+            </div>
+            <div className="cash-expenses">
+              <div className="item cash">
+                <div className="muted small">Cash</div>
+                <div className="amount">{formatPeso(totals.cash)}</div>
+              </div>
+              <div className="item expenses">
+                <div className="muted small">Expenses</div>
+                <div className="amount">{formatPeso(totals.expenses)}</div>
+              </div>
             </div>
           </div>
 
           <div className="mt-14">
             <Charts transactions={monthTx} />
-          </div>
-
-          <div className="mt-12">
-            <TransactionList transactions={monthTx} showDelete={false} />
           </div>
         </div>
       </div>
@@ -63,10 +60,13 @@ export default function Overview({ transactions, monthDate, onOpenAdd }) {
           <div className="muted">Top categories this month</div>
           <div className="mt-10">
             {/* quick category list */}
-            {Array.from(new Set(transactions.filter(t=>t.type==='expense').map(t=>t.category))).slice(0,6).map((c)=> (
+            {Object.entries(monthTx.filter(t=>t.type==='expense').reduce((acc, t) => {
+              acc[t.category] = (acc[t.category] || 0) + Number(t.amount);
+              return acc;
+            }, {})).sort(([,a], [,b]) => b - a).slice(0,6).map(([c, amount]) => (
               <div key={c} className="category-row">
                 <div>{c}</div>
-                <div className="muted small">{formatPeso(0)}</div>
+                <div className="muted small">{formatPeso(amount)}</div>
               </div>
             ))}
           </div>

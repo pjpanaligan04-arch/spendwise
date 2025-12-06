@@ -19,25 +19,17 @@ export default function Header({ monthDate, setMonthDate, activeTab, setActiveTa
     return MONTHS.map((m, idx) => ({ name: m, index: idx }));
   }, []);
 
-  const yearItems = useMemo(()=>{
-    const start = 2025, end = 2050;
-    const years = [];
-    for(let y = start; y<= end; y++) years.push(y);
-    // split into 3 rows
-    const rows = [[],[],[]];
-    years.forEach((y,i)=> rows[i % 3].push(y));
-    return rows;
-  }, []);
+  function changeYear(delta) {
+    const newYear = year + delta;
+    setMonthDate(new Date(newYear, monthDate.getMonth(), 1));
+  }
 
   function pickMonth(idx) {
     setMonthDate(new Date(year, idx, 1));
     setOpenMenu(false);
   }
 
-  function pickYear(y) {
-    setMonthDate(new Date(y, monthDate.getMonth(), 1));
-    // keep dropdown open so user can also pick month if desired
-  }
+
 
   return (
     <header className="header">
@@ -54,8 +46,10 @@ export default function Header({ monthDate, setMonthDate, activeTab, setActiveTa
           <div id="month-dropdown" className="month-dropdown">
             <div className="card">
               <div className="dropdown-header">
+                <button className="year-arrow" onClick={() => changeYear(-1)}>←</button>
                 <div className="dropdown-year">{year}</div>
-                <div className="muted small">Select month / year</div>
+                <button className="year-arrow" onClick={() => changeYear(1)}>→</button>
+                <div className="muted small">Select month</div>
               </div>
               <div className="month-list">
                 {monthItems.map(mi => (
@@ -66,16 +60,7 @@ export default function Header({ monthDate, setMonthDate, activeTab, setActiveTa
                 ))}
               </div>
 
-              <div className="year-grid">
-                <div className="year-heading muted">Years</div>
-                {yearItems.map((row, rIdx) => (
-                  <div key={rIdx} className="year-row">
-                    {row.map(y => (
-                      <div key={y} className={`year-item ${y === monthDate.getFullYear() ? 'active' : ''}`} onClick={()=>pickYear(y)}>{y}</div>
-                    ))}
-                  </div>
-                ))}
-              </div>
+
             </div>
           </div>
         )}

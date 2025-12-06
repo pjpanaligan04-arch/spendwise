@@ -13,7 +13,7 @@ export default function TransactionList({ transactions, onDelete, showDelete=tru
           <div className="tx-left">
             <div className={`tx-chip ${tx.type}`}></div>
             <div>
-              <div className="tx-title">{tx.type==='expense' ? tx.category : 'Cash'}</div>
+              <div className="tx-title">{tx.type==='expense' ? tx.category : 'Cash'}{tx.note && ` - "${tx.note}"`}</div>
               <div className="tx-date">{new Date(tx.date).toLocaleString()}</div>
             </div>
           </div>
